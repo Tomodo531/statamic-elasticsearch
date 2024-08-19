@@ -2,6 +2,7 @@
 
 namespace TheHome\StatamicElasticsearch;
 
+use Illuminate\Support\Str;
 use Statamic\Facades\Entry;
 use Statamic\Facades\Asset;
 
@@ -31,7 +32,7 @@ class SearchTransformers
                 }
             },
             'duplicate' => function ($data, $item): string {
-                $id = str_after($item, 'entry::');
+                $id = Str::after($item, 'entry::');
 
                 $hasShadow =
                     Entry::query()
@@ -50,7 +51,7 @@ class SearchTransformers
                 }
             },
             'subsidy' => function ($data, $item): string {
-                $id = str_after($item, 'entry::');
+                $id = Str::after($item, 'entry::');
                 $entry = Entry::find($id);
                 if ($entry !== null) {
                     $category = $entry->get('subsidy_categories');

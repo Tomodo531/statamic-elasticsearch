@@ -2,6 +2,7 @@
 
 namespace TheHome\StatamicElasticsearch;
 
+use Illuminate\Support\Str;
 use Statamic\Search\Index as BaseIndex;
 use TheHome\StatamicElasticsearch\SearchTransformers;
 use Illuminate\Support\Arr;
@@ -346,8 +347,8 @@ class Index extends BaseIndex
         $searchables = collect(Arr::wrap($this->config['searchables']));
         return $searchables
             ->map(function ($item) use ($collection) {
-                if (starts_with($item, 'collection:')) {
-                    $handle = str_after($item, 'collection:');
+                if (Str::startsWith($item, 'collection:')) {
+                    $handle = Str::after($item, 'collection:');
                     return $handle !== $collection ? $handle : null;
                 }
             })

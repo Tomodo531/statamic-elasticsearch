@@ -59,7 +59,7 @@ class Query extends QueryBuilder
     {
         return $this->getBaseItems();
     }
-    
+
     /**
      * Method getBaseItems
      *
